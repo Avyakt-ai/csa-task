@@ -1,0 +1,49 @@
+{% extends 'buyer/base.html' %}
+{% block title %}Buyer{% endblock %}
+{% block content %}
+{% load static %}
+<style>
+    body {
+        background-image: url("{% static 'buyer/food_background.png' %}");
+        background-size: cover; /* Adjust as needed */
+        color: #fff;
+    }
+
+    .restaurant-list {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .restaurant-box {
+        width: 400px;
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 25px;
+        margin: 30px;
+        padding: 10px;
+    }
+
+    .restaurant-box h4 {
+        margin-top: 0;
+    }
+
+    .restaurant-box img {
+        width: 100%;
+        height: auto;
+    }
+</style>
+<h1>Hello {{user_name}},</h1>
+<h2>Eat From Following Restaurant</h2>
+<div class="restaurant-list">
+    {% for restaurant in restaurants %}
+    <div class="restaurant-box">
+        <a href="{% url 'view_food_items' restaurant.id %}">
+            <h4>{{ restaurant.restaurant_name }}</h4>
+            <img src="{{ restaurant.image.url }}" alt="{{ restaurant.restaurant_name }}">
+        </a>
+    </div>
+    {% endfor %}
+</div>
+<br>
+<br>
+{% endblock %}

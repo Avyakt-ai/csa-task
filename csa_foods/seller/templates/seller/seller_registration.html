@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <style>
+        body {
+            padding: 50px;
+            background-image: url("{% static 'buyer/food_background.png' %}");
+            background-size: cover;
+            color: black;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 54px;
+            color: white;
+            opacity: 0;
+            animation: fadeIn 0.7s ease-in-out forwards;
+        }
+
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.8); /* Adjust background color and opacity */
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            animation: fadeIn 0.7s ease-in-out forwards;
+        }
+
+        legend {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #17a2b8; /* Adjust button color */
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            opacity: 0;
+            animation: fadeIn 0.7s ease-in-out forwards;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #138496; /* Adjust button hover color */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        .go-back-btn {
+            width: 100px;
+            height: 50px;
+            border-radius: 10px;
+            border: none;
+            background-color: #0056b3;
+            color: #fff;
+            font-size: 27px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            position: absolute;
+            top: 50px;
+            left: 30px;
+        }
+
+        .go-back-btn:hover {
+            background-color: #495057;
+        }
+    </style>
+</head>
+<body>
+{% if messages %}
+<div class="container mt-4">
+    <div class="alert alert-success" role="alert">
+        {% for message in messages %}
+        {{ message }}
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+<h1>Registration Page</h1>
+<form method="POST">
+    {% csrf_token %}
+    <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Register as Seller</legend>
+        {{ form.as_p }}
+    </fieldset>
+    <br>
+    <div class="form-group">
+        <button class="btn btn-outline-info" type="submit">Sign Up</button>
+    </div>
+</form>
+<button class="btn btn-secondary go-back-btn" onclick="goBack()">Back</button>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+</body>
+</html>
